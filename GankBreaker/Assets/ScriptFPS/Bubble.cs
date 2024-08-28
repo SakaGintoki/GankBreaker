@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class Bubble : MonoBehaviour
 {
     public Text bubbleText;
@@ -13,6 +12,7 @@ public class Bubble : MonoBehaviour
     private bool keyPressed = false;
 
     private HealthSystem playerHealth;
+    private EnemyHealth enemyHealth;
 
     void Start()
     {
@@ -22,6 +22,9 @@ public class Bubble : MonoBehaviour
 
         // Find the player's health system
         playerHealth = FindObjectOfType<HealthSystem>();
+
+        // Find the enemy's health system
+        enemyHealth = FindObjectOfType<EnemyHealth>();
     }
 
     void Update()
@@ -33,12 +36,24 @@ public class Bubble : MonoBehaviour
             // Check if the pressed key is correct
             if (Input.GetKeyDown(bubbleKey.ToString().ToLower()) || Input.GetKeyDown(bubbleKey.ToString().ToUpper()))
             {
-                Destroy(gameObject); // Remove the bubble
                 keyPressed = true; // Mark as successfully pressed
+
+                // Check if enemyHealth is not null before accessing it
+                if (enemyHealth != null)
+                {
+                    enemyHealth.TakeDamage(10); // Damage the enemy
+                }
+
+                Destroy(gameObject); // Remove the bubble
             }
             else
             {
-                playerHealth.TakeDamage(10); // Decrease health if wrong key pressed
+                // Check if playerHealth is not null before accessing it
+                if (playerHealth != null)
+                {
+                    playerHealth.TakeDamage(10); // Decrease health if wrong key pressed
+                }
+
                 Destroy(gameObject); // Remove the bubble
             }
         }
@@ -46,7 +61,12 @@ public class Bubble : MonoBehaviour
         // Check if the time is up
         if (timer >= lifeTime && !keyPressed)
         {
-            playerHealth.TakeDamage(10); // Decrease health if time runs out
+            // Check if playerHealth is not null before accessing it
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(10); // Decrease health if time runs out
+            }
+
             Destroy(gameObject); // Remove the bubble
         }
     }
