@@ -10,6 +10,9 @@ public class Bubble : MonoBehaviour
     [SerializeField] private char bubbleKey; // The key that will be displayed in the bubble
     [SerializeField] private float lifeTime = 1f; // Time within which the player must press the correct key
     [SerializeField] private string firstPersonHandTag = "FirstPersonHand";
+    [SerializeField] private Color PunchColor;
+    [SerializeField] private Color ShieldColor;
+
     private float timer;
     private bool keyPressed = false;
     private Animator anim;
@@ -62,11 +65,11 @@ public class Bubble : MonoBehaviour
         // Optionally, you can change the bubble's appearance based on the animation type
         if (animationType == AnimationType.PunchAnimation)
         {
-            bubbleText.color = Color.red; // Example: Change color for punch
+            bubbleText.color = Color.cyan; // Example: Change color for punch
         }
         else
         {
-            bubbleText.color = Color.blue; // Example: Change color for block
+            bubbleText.color = Color.white; // Example: Change color for block
         }
     }
 
