@@ -6,9 +6,10 @@ using UnityEngine.UI;
 
 public class Bubble : MonoBehaviour
 {
-    public Text bubbleText;
-    public char bubbleKey; // The key that will be displayed in the bubble
-    public float lifeTime = 1f; // Time within which the player must press the correct key
+    [SerializeField] private Text bubbleText;
+    [SerializeField] private char bubbleKey; // The key that will be displayed in the bubble
+    [SerializeField] private float lifeTime = 1f; // Time within which the player must press the correct key
+    [SerializeField] private string firstPersonHandTag = "FirstPersonHand";
     private float timer;
     private bool keyPressed = false;
     private Animator anim;
@@ -22,7 +23,8 @@ public class Bubble : MonoBehaviour
 
     void Start()
     {
-        anim = GetComponent<Animator>();
+        GameObject firstPersonHand = GameObject.FindGameObjectWithTag(firstPersonHandTag);
+        anim = firstPersonHand.GetComponent<Animator>();
         if (anim == null)
         {
             Debug.LogError("Animator component missing from this GameObject!");
