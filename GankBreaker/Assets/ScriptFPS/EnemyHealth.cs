@@ -7,21 +7,30 @@ public class EnemyHealth : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth;
+    public Slider EnemyHealthSlider;
 
     void Start()
     {
         currentHealth = maxHealth;
+        EnemyHealthSlider = GetComponent<Slider>();
+        EnemyHealthSlider.value = currentHealth;
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        UpdateHealthUI();
 
         if (currentHealth <= 0)
         {
             currentHealth = 0;
             Die();
         }
+    }
+
+    void UpdateHealthUI()
+    {
+        EnemyHealthSlider.value = (float)currentHealth / maxHealth;
     }
 
     void Die()
