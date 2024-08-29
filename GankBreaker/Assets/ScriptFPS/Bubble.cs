@@ -11,39 +11,54 @@ public class Bubble : MonoBehaviour
     public float lifeTime = 1f; // Time within which the player must press the correct key
     private float timer;
     private bool keyPressed = false;
+    private Animator anim;
 
     private MainCharacterHealth playerHealth;
     private EnemyHealth enemyHealth;
 
-    // Animation type (block or punch)
-    private enum AnimationType { Block, Punch }
+    // Animation type (Block or Punch)
+    private enum AnimationType { BlockAnimation, PunchAnimation }
     private AnimationType animationType;
 
     void Start()
     {
+        anim = GetComponent<Animator>();
+        if (anim == null)
+        {
+            Debug.LogError("Animator component missing from this GameObject!");
+        }
+
         // Assign a random letter to the bubble
         bubbleKey = (char)('A' + UnityEngine.Random.Range(0, 26));
         bubbleText.text = bubbleKey.ToString();
 
         // Find the player's health system
         playerHealth = FindObjectOfType<MainCharacterHealth>();
+        if (playerHealth == null)
+        {
+            Debug.LogError("MainCharacterHealth component not found in the scene!");
+        }
 
         // Find the enemy's health system
         enemyHealth = FindObjectOfType<EnemyHealth>();
+        if (enemyHealth == null)
+        {
+            Debug.LogError("EnemyHealth component not found in the scene!");
+        }
 
         // Randomly assign an animation type with higher probability for Block
         float randomValue = UnityEngine.Random.value; // Generates a random float between 0.0 and 1.0
         if (randomValue < 0.7f) // 70% chance
         {
-            animationType = AnimationType.Block;
+            animationType = AnimationType.BlockAnimation;
         }
         else // 30% chance
         {
-            animationType = AnimationType.Punch;
+            animationType = AnimationType.PunchAnimation;
         }
 
         // Optionally, you can change the bubble's appearance based on the animation type
-        if (animationType == AnimationType.Punch)
+        if (animationType == AnimationType.PunchAnimation)
         {
             bubbleText.color = Color.red; // Example: Change color for punch
         }
@@ -63,11 +78,18 @@ public class Bubble : MonoBehaviour
             if (Input.GetKeyDown(bubbleKey.ToString().ToLower()) || Input.GetKeyDown(bubbleKey.ToString().ToUpper()))
             {
                 keyPressed = true; // Mark as successfully pressed
-                if (animationType == AnimationType.Punch && enemyHealth != null)
+                if (animationType == AnimationType.PunchAnimation && enemyHealth != null)
                 {
                     enemyHealth.TakeDamage(10); // Damage the enemy if punch animation
+                    anim.SetTrigger("Punch");
                 }
-                // No damage for block animation, just destroy the bubble
+                else if (animationType == AnimationType.BlockAnimation)
+                {
+                    anim.SetTrigger("Shield");
+                }
+                
+
+                // Optionally, wait for animation to finish before destroying
                 Destroy(gameObject); // Remove the bubble
             }
             else if (playerHealth != null)
