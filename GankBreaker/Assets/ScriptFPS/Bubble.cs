@@ -82,17 +82,16 @@ public class Bubble : MonoBehaviour
                 keyPressed = true; // Mark as successfully pressed
                 if (animationType == AnimationType.PunchAnimation && enemyHealth != null)
                 {
-                    enemyHealth.TakeDamage(10); // Damage the enemy if punch animation
                     anim.SetTrigger("Punch");
+                    enemyHealth.TakeDamage(10); // Damage the enemy if 
                 }
                 else if (animationType == AnimationType.BlockAnimation)
                 {
                     anim.SetTrigger("Shield");
                 }
-                
-
                 // Optionally, wait for animation to finish before destroying
                 Destroy(gameObject); // Remove the bubble
+                anim.SetTrigger("Default");
             }
             else if (playerHealth != null)
             {
