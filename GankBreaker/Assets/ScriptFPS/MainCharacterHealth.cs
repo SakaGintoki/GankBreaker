@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MainCharacterHealth: MonoBehaviour
 {
     public static int maxHealth = 100;
-    public static int damage = 10;
+    public static int damage = 25;
     public int currentHealth;
     public Slider healthSlider; // Reference to the Slider UI element
     private MCAnimation mcAnimation;

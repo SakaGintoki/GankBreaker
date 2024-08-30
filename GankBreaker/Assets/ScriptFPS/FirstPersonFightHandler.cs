@@ -13,7 +13,7 @@ public class FirstPersonFightHandler : MonoBehaviour
     [SerializeField] GameObject EnemyHealthSlider;
     [SerializeField] GameObject HealthSlider;
     [SerializeField] Image EscapeButtonImage;
-    private static int countClickRetreat = 0;
+    private int countClickRetreat = 0;
     private string sceneToLoad;
 
 

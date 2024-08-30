@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 9864f256307d6934fa6183fc5edb1c25, type: 2}
+  m_Motion: {fileID: 7400000, guid: c2f4637e8bf695043a239c9fc5b0164f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -136,7 +136,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FPS_UderLings1
+  m_Name: FPS_UderLings2
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Punch
@@ -191,7 +191,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 0c7972e8e0b0d8147bc19f905f7ede6d, type: 2}
+  m_Motion: {fileID: 7400000, guid: 9ac3dacd298254243aed998863400b19, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -244,7 +244,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: b21727e92b1b9e342946aed9f2df02b6, type: 2}
+  m_Motion: {fileID: 7400000, guid: 35ce5511d97ac774aa5fd70c9f3c5802, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
