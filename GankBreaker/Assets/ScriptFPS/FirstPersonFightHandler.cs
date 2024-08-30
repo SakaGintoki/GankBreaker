@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class FirstPersonFightHandler : MonoBehaviour
@@ -11,15 +12,13 @@ public class FirstPersonFightHandler : MonoBehaviour
     [SerializeField] GameObject BubbleSpawner;
     [SerializeField] GameObject EnemyHealthSlider;
     [SerializeField] GameObject HealthSlider;
+    private string sceneToLoad;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     void Awake()
     {
+        sceneToLoad = "Platformer";
+        SceneManager.LoadScene(sceneToLoad);
         ChoicePanel.SetActive(true);
         FightButton.onClick.AddListener(Fight);
         EscapeButton.onClick.AddListener(Escape);
@@ -38,8 +37,14 @@ public class FirstPersonFightHandler : MonoBehaviour
 
     void Escape()
     {
-
+        float randomValue = UnityEngine.Random.value;
+        if (randomValue < 0.6f)
+        {
+            SceneManager.LoadScene(sceneToLoad);
+        }
+        else
+        {
+            
+        }
     }
-    
-    // Update is called once per frame
 }
