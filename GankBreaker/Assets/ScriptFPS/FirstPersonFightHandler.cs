@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,6 +13,7 @@ public class FirstPersonFightHandler : MonoBehaviour
     [SerializeField] GameObject BubbleSpawner;
     [SerializeField] GameObject EnemyHealthSlider;
     [SerializeField] GameObject HealthSlider;
+    [SerializeField] TextMeshProUGUI HealthNote;
     [SerializeField] Image EscapeButtonImage;
     [SerializeField] int PlatformerIndex = 2;
     private int countClickRetreat = 0;
@@ -39,6 +41,7 @@ public class FirstPersonFightHandler : MonoBehaviour
         BubbleSpawner?.SetActive(true);
         EnemyHealthSlider.SetActive(true);
         HealthSlider.SetActive(true);
+        HealthNote.SetText("");
     }
 
     void Escape()
