@@ -33,39 +33,39 @@ public class Bubble : MonoBehaviour
             Debug.LogError("Animator component missing from this GameObject!");
         }
 
-        // Assign a random letter to the bubble
-        bubbleKey = (char)('A' + UnityEngine.Random.Range(0, 26));
-        bubbleText.text = bubbleKey.ToString();
+        // bubbleKey = (char)('A' + UnityEngine.Random.Range(0, 26));
+        bubbleText.text = "";
 
-        // Find the player's health system
+     
         playerHealth = FindObjectOfType<MainCharacterHealth>();
         if (playerHealth == null)
         {
             Debug.LogError("MainCharacterHealth component not found in the scene!");
         }
 
-        // Find the enemy's health system
         enemyHealth = FindObjectOfType<EnemyHealth>();
         if (enemyHealth == null)
         {
             Debug.LogError("EnemyHealth component not found in the scene!");
         }
 
-        // Randomly assign an animation type with higher probability for Block
-        float randomValue = UnityEngine.Random.value; // Generates a random float between 0.0 and 1.0
-        if (randomValue < 0.7f) // 70% chance
+        float randomValue = UnityEngine.Random.value; 
+        if (randomValue < 0.7f) 
         {
+            bubbleKey = (char)('A');
+            bubbleText.text = bubbleKey.ToString();
             animationType = AnimationType.BlockAnimation;
         }
-        else // 30% chance
+        else 
         {
+            bubbleKey = (char)('D');
+            bubbleText.text = bubbleKey.ToString();
             animationType = AnimationType.PunchAnimation;
         }
 
-        // Optionally, you can change the bubble's appearance based on the animation type
         if (animationType == AnimationType.PunchAnimation)
         {
-            bubbleText.color = Color.cyan; // Example: Change color for punch
+            bubbleText.color = Color.cyan; 
         }
         else
         {
