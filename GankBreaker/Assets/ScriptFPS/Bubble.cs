@@ -13,6 +13,10 @@ public class Bubble : MonoBehaviour
     [SerializeField] private Color PunchColor;
     [SerializeField] private Color ShieldColor;
     [SerializeField] private Color BubbleColor;
+    [SerializeField] private string GlobalAudioSourceTag = "GlobalAudioSource";
+    [SerializeField] private AudioClip PunchAudioClip;
+    [SerializeField] private AudioClip ShieldAudioClip;
+    private AudioSource audioSource;
 
     private float timer;
     private bool keyPressed = false;
@@ -27,6 +31,7 @@ public class Bubble : MonoBehaviour
 
     void Start()
     {
+        audioSource = GameObject.FindGameObjectWithTag(GlobalAudioSourceTag).GetComponent<AudioSource>();
         // bubbleKey = (char)('A' + UnityEngine.Random.Range(0, 26));
         bubbleText.text = "";
 
@@ -93,6 +98,7 @@ public class Bubble : MonoBehaviour
                 if (animationType == AnimationType.PunchAnimation && enemyHealth != null)
                 {
                     mcAnimation.SetAnimationPunch();
+                    audioSource.PlayOneShot(PunchAudioClip, 1f);
                     if (randomValueShieldEnemy <= 0.5f)
                     {
                         enemyAnimation.SetAnimationShield();
@@ -106,6 +112,7 @@ public class Bubble : MonoBehaviour
                 else if (animationType == AnimationType.BlockAnimation)
                 {
                     enemyAnimation.SetAnimationPunch();
+                    audioSource.PlayOneShot(ShieldAudioClip, 1f);
                     mcAnimation.SetAnimationShield();
                 }
                 Destroy(gameObject); // Remove the bubble

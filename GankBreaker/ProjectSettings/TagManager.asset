@@ -11,6 +11,7 @@ TagManager:
   - FirstPersonEnemy
   - gang3
   - audio
+  - GlobalAudio
   layers:
   - Default
   - TransparentFX
