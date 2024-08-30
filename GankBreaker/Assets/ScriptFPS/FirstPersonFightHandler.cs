@@ -12,16 +12,21 @@ public class FirstPersonFightHandler : MonoBehaviour
     [SerializeField] GameObject BubbleSpawner;
     [SerializeField] GameObject EnemyHealthSlider;
     [SerializeField] GameObject HealthSlider;
+    [SerializeField] Image EscapeButtonImage;
+    private static int countClickRetreat = 0;
     private string sceneToLoad;
 
 
     void Awake()
     {
         sceneToLoad = "Platformer";
-        SceneManager.LoadScene(sceneToLoad);
         ChoicePanel.SetActive(true);
         FightButton.onClick.AddListener(Fight);
-        EscapeButton.onClick.AddListener(Escape);
+        if (countClickRetreat < 1)
+        {
+            EscapeButton.onClick.AddListener(Escape);
+            countClickRetreat++;
+        }
         BubbleSpawner.SetActive(false);
         EnemyHealthSlider.SetActive(false);
         HealthSlider.SetActive(false);
@@ -40,11 +45,11 @@ public class FirstPersonFightHandler : MonoBehaviour
         float randomValue = UnityEngine.Random.value;
         if (randomValue < 0.6f)
         {
-            SceneManager.LoadScene(sceneToLoad);
+            SceneManager.LoadScene(1);
         }
         else
         {
-            
+            EscapeButtonImage.color = Color.red;
         }
     }
 }
