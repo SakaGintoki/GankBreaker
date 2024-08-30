@@ -10,6 +10,7 @@ TagManager:
   - FirstPersonHand
   - FirstPersonEnemy
   - gang3
+  - audio
   layers:
   - Default
   - TransparentFX
