@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7668d3ce9ea0983469d0100109ba81e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSource: {fileID: 0}
+  musicSource: {fileID: 839178743}
   menuMusic: {fileID: 0}
   walkMusic: {fileID: 0}
   fightMusic: {fileID: 0}
