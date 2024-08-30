@@ -6,15 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Epilog.unity
+    guid: 9e5ac8ec22ac0644c99b65ee91d6ccdd
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: a119faf4740652143bb30f27b1b942b6
-  - enabled: 1
-<<<<<<< Updated upstream
-    path: Assets/Scenes/Prolog.unity
-    guid: 82b28447a05c4ca47ba48e41a018a707
-  - enabled: 1
-    path: Assets/Scenes/Prolog 2.unity
-    guid: 353695b7cde77a34ba789171e29870b7
   - enabled: 1
     path: Assets/Scenes/Platformer.unity
     guid: 2cda990e2423bbf4892e6590ba056729
@@ -22,17 +18,15 @@ EditorBuildSettings:
     path: Assets/Scenes/FPS1.unity
     guid: c13473a22e5a6af4aa30f1984e0c6e79
   - enabled: 1
-    path: Assets/Scenes/Epilog.unity
-    guid: 9e5ac8ec22ac0644c99b65ee91d6ccdd
-  - enabled: 0
-=======
-    path: Assets/Scenes/Platformer.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/FPS2.unity
+    guid: 7d28566a1b65cf54fbd2d5a0dd99e4ba
   - enabled: 1
->>>>>>> Stashed changes
-    path: Assets/Scenes/Level2.unity
-    guid: 49d8f338f23b5fb4d9677e07e2dd5b26
+    path: Assets/Scenes/FPS3.unity
+    guid: 388bbc380a554b148a7e40e32f9d88ee
   - enabled: 1
-    path: Assets/Scenes/Level3.unity
-    guid: 59ec122bf893ad8498fbd7b95c1bc4ad
+    path: Assets/Scenes/Prolog.unity
+    guid: 82b28447a05c4ca47ba48e41a018a707
+  - enabled: 1
+    path: Assets/Scenes/Prolog 2.unity
+    guid: 353695b7cde77a34ba789171e29870b7
   m_configObjects: {}

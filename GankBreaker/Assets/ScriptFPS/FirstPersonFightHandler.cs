@@ -13,6 +13,7 @@ public class FirstPersonFightHandler : MonoBehaviour
     [SerializeField] GameObject EnemyHealthSlider;
     [SerializeField] GameObject HealthSlider;
     [SerializeField] Image EscapeButtonImage;
+    [SerializeField] int PlatformerIndex = 2;
     private int countClickRetreat = 0;
     private string sceneToLoad;
 
@@ -45,7 +46,7 @@ public class FirstPersonFightHandler : MonoBehaviour
         float randomValue = UnityEngine.Random.value;
         if (randomValue < 0.6f)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(PlatformerIndex);
         }
         else
         {
