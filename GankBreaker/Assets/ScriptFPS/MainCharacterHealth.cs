@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class MainCharacterHealth: MonoBehaviour
 {
-    public int maxHealth = 100;
+    public static int maxHealth = 100;
+    public static int damage = 10;
     public int currentHealth;
     public Slider healthSlider; // Reference to the Slider UI element
     private MCAnimation mcAnimation;
@@ -51,6 +52,7 @@ public class MainCharacterHealth: MonoBehaviour
 
     void Die()
     {
+        increaseMCHealthAndDamage();
         // Logic when the enemy dies
         mcAnimation.SetAnimationDefault();
         enemyAnimation.SetAnimationDefault();
@@ -59,5 +61,12 @@ public class MainCharacterHealth: MonoBehaviour
         // Optionally, trigger other game events here, like stopping the game or showing a victory screen.
         BubbleSpawner spawner = FindObjectOfType<BubbleSpawner>();
         spawner.StopSpawning();  // Stop spawning bubbles when the enemy is defeated
+    }
+
+    void increaseMCHealthAndDamage()
+    {
+        maxHealth += 5;
+        damage += 5;
+        
     }
 }

@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class Bubble : MonoBehaviour
 {
     [SerializeField] private Text bubbleText;
-    [SerializeField] private char bubbleKey; // The key that will be displayed in the bubble
-    [SerializeField] private float lifeTime = 1f; // Time within which the player must press the correct key
+    [SerializeField] private char bubbleKey;
+    [SerializeField] private float lifeTime = 1f; 
     [SerializeField] private string firstPersonHandTag = "FirstPersonHand";
     [SerializeField] private Color PunchColor;
     [SerializeField] private Color ShieldColor;
@@ -22,7 +22,6 @@ public class Bubble : MonoBehaviour
     private MainCharacterHealth playerHealth;
     private EnemyHealth enemyHealth;
 
-    // Animation type (Block or Punch)
     private enum AnimationType { BlockAnimation, PunchAnimation }
     private AnimationType animationType;
 
@@ -77,7 +76,7 @@ public class Bubble : MonoBehaviour
         }
         else
         {
-            bubbleText.color = Color.white; // Example: Change color for block
+            bubbleText.color = Color.white;
         }
     }
 
@@ -88,10 +87,9 @@ public class Bubble : MonoBehaviour
         
         if (Input.anyKeyDown && !keyPressed)
         {
-            // Check if the pressed key is correct
             if (Input.GetKeyDown(bubbleKey.ToString().ToLower()) || Input.GetKeyDown(bubbleKey.ToString().ToUpper()))
             {
-                keyPressed = true; // Mark as successfully pressed
+                keyPressed = true; 
                 if (animationType == AnimationType.PunchAnimation && enemyHealth != null)
                 {
                     mcAnimation.SetAnimationPunch();
@@ -101,7 +99,7 @@ public class Bubble : MonoBehaviour
                     } 
                     else
                     {
-                        enemyHealth.TakeDamage(10); // Damage the enemy if 
+                        enemyHealth.TakeDamage(10); 
                     }
                     enemyAnimation.SetAnimationDefault();
                 }
@@ -110,7 +108,6 @@ public class Bubble : MonoBehaviour
                     enemyAnimation.SetAnimationPunch();
                     mcAnimation.SetAnimationShield();
                 }
-                // Optionally, wait for animation to finish before destroying
                 Destroy(gameObject); // Remove the bubble
                 mcAnimation.SetAnimationDefault();
                 enemyAnimation.SetAnimationDefault();
@@ -118,7 +115,7 @@ public class Bubble : MonoBehaviour
             else if (playerHealth != null)
             {
                 enemyAnimation.SetAnimationPunch();
-                playerHealth.TakeDamage(10); // Decrease health if wrong key pressed
+                playerHealth.TakeDamage(enemyHealth.damage); // Decrease health if wrong key pressed
                 Destroy(gameObject); // Remove the bubble
             }
              enemyAnimation.SetAnimationDefault();
