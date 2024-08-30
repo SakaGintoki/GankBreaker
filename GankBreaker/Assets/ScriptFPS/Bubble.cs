@@ -12,10 +12,12 @@ public class Bubble : MonoBehaviour
     [SerializeField] private string firstPersonHandTag = "FirstPersonHand";
     [SerializeField] private Color PunchColor;
     [SerializeField] private Color ShieldColor;
+    [SerializeField] private Color BubbleColor;
 
     private float timer;
     private bool keyPressed = false;
-    private Animator anim;
+    private MCAnimation mcAnimation;
+    private EnemyAnimation enemyAnimation;
 
     private MainCharacterHealth playerHealth;
     private EnemyHealth enemyHealth;
@@ -26,17 +28,23 @@ public class Bubble : MonoBehaviour
 
     void Start()
     {
-        GameObject firstPersonHand = GameObject.FindGameObjectWithTag(firstPersonHandTag);
-        anim = firstPersonHand.GetComponent<Animator>();
-        if (anim == null)
-        {
-            Debug.LogError("Animator component missing from this GameObject!");
-        }
-
         // bubbleKey = (char)('A' + UnityEngine.Random.Range(0, 26));
         bubbleText.text = "";
 
-     
+        mcAnimation = FindObjectOfType<MCAnimation>();
+        if (mcAnimation == null)
+        {
+            Debug.LogError("MCAnimation component not found in the scene!");
+        }
+
+        // Initialize enemyAnimation (if necessary)
+        enemyAnimation = FindObjectOfType<EnemyAnimation>();
+        if (enemyAnimation == null)
+        {
+            Debug.LogError("EnemyAnimation component not found in the scene!");
+        }
+
+
         playerHealth = FindObjectOfType<MainCharacterHealth>();
         if (playerHealth == null)
         {
@@ -76,7 +84,8 @@ public class Bubble : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-
+        float randomValueShieldEnemy = UnityEngine.Random.value;
+        
         if (Input.anyKeyDown && !keyPressed)
         {
             // Check if the pressed key is correct
@@ -85,22 +94,34 @@ public class Bubble : MonoBehaviour
                 keyPressed = true; // Mark as successfully pressed
                 if (animationType == AnimationType.PunchAnimation && enemyHealth != null)
                 {
-                    anim.SetTrigger("Punch");
-                    enemyHealth.TakeDamage(10); // Damage the enemy if 
+                    mcAnimation.SetAnimationPunch();
+                    if (randomValueShieldEnemy <= 0.5f)
+                    {
+                        enemyAnimation.SetAnimationShield();
+                    } 
+                    else
+                    {
+                        enemyHealth.TakeDamage(10); // Damage the enemy if 
+                    }
+                    enemyAnimation.SetAnimationDefault();
                 }
                 else if (animationType == AnimationType.BlockAnimation)
                 {
-                    anim.SetTrigger("Shield");
+                    enemyAnimation.SetAnimationPunch();
+                    mcAnimation.SetAnimationShield();
                 }
                 // Optionally, wait for animation to finish before destroying
                 Destroy(gameObject); // Remove the bubble
-                anim.SetTrigger("Default");
+                mcAnimation.SetAnimationDefault();
+                enemyAnimation.SetAnimationDefault();
             }
             else if (playerHealth != null)
             {
+                enemyAnimation.SetAnimationPunch();
                 playerHealth.TakeDamage(10); // Decrease health if wrong key pressed
                 Destroy(gameObject); // Remove the bubble
             }
+             enemyAnimation.SetAnimationDefault();
         }
 
         // Check if the time is up
@@ -108,9 +129,14 @@ public class Bubble : MonoBehaviour
         {
             if (playerHealth != null)
             {
+                enemyAnimation.SetAnimationPunch();
                 playerHealth.TakeDamage(10); // Decrease health if time runs out
             }
             Destroy(gameObject); // Remove the bubble
+            enemyAnimation.SetAnimationDefault();
         }
+
+        enemyAnimation.SetAnimationDefault();
+        mcAnimation.SetAnimationDefault();
     }
 }

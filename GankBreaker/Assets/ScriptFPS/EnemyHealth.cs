@@ -10,7 +10,24 @@ public class EnemyHealth : MonoBehaviour
     public int currentHealth;
     public Slider EnemyHealthSlider;
     [SerializeField] public UnityEvent OnDead;
+    private MCAnimation mcAnimation;
+    private EnemyAnimation enemyAnimation;
 
+    private void Awake()
+    {
+        mcAnimation = FindObjectOfType<MCAnimation>();
+        if (mcAnimation == null)
+        {
+            Debug.LogError("MCAnimation component not found in the scene!");
+        }
+
+        // Initialize enemyAnimation (if necessary)
+        enemyAnimation = FindObjectOfType<EnemyAnimation>();
+        if (enemyAnimation == null)
+        {
+            Debug.LogError("EnemyAnimation component not found in the scene!");
+        }
+    }
     void Start()
     {
         currentHealth = maxHealth;
@@ -38,6 +55,8 @@ public class EnemyHealth : MonoBehaviour
     void Die()
     {
         // Logic when the enemy dies
+        mcAnimation.SetAnimationDefault();
+        enemyAnimation.SetAnimationDefault();
         Debug.Log("Enemy Defeated");
         OnDead.Invoke();
         // Optionally, trigger other game events here, like stopping the game or showing a victory screen.

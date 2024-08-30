@@ -8,6 +8,24 @@ public class MainCharacterHealth: MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public Slider healthSlider; // Reference to the Slider UI element
+    private MCAnimation mcAnimation;
+    private EnemyAnimation enemyAnimation;
+
+    private void Awake()
+    {
+        mcAnimation = FindObjectOfType<MCAnimation>();
+        if (mcAnimation == null)
+        {
+            Debug.LogError("MCAnimation component not found in the scene!");
+        }
+
+        // Initialize enemyAnimation (if necessary)
+        enemyAnimation = FindObjectOfType<EnemyAnimation>();
+        if (enemyAnimation == null)
+        {
+            Debug.LogError("EnemyAnimation component not found in the scene!");
+        }
+    }
 
     void Start()
     {
@@ -34,6 +52,9 @@ public class MainCharacterHealth: MonoBehaviour
     void Die()
     {
         // Logic when the enemy dies
+        mcAnimation.SetAnimationDefault();
+        enemyAnimation.SetAnimationDefault();
+
         Debug.Log("Game Over");
         // Optionally, trigger other game events here, like stopping the game or showing a victory screen.
         BubbleSpawner spawner = FindObjectOfType<BubbleSpawner>();

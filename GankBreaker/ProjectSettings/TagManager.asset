@@ -8,6 +8,7 @@ TagManager:
   - gang1
   - gang2
   - FirstPersonHand
+  - FirstPersonEnemy
   layers:
   - Default
   - TransparentFX
