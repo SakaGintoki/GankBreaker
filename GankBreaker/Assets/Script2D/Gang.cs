@@ -13,13 +13,19 @@ public class Gang : MonoBehaviour
         if (collision.CompareTag("gang1"))
         {
             Debug.Log("gang1");
-            sceneToLoad = "Level2";
+            sceneToLoad = "FPS1";
             enterAllowed = true;
         }
         else if (collision.CompareTag("gang2"))
         {
             Debug.Log("gang2");
-            sceneToLoad = "Level3";
+            sceneToLoad = "FPS2";
+            enterAllowed = true;
+        }
+        else if (collision.CompareTag("gang3"))
+        {
+            Debug.Log("gang3");
+            sceneToLoad = "FPS3";
             enterAllowed = true;
         }
     }
@@ -27,7 +33,7 @@ public class Gang : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enterAllowed && Input.GetKey(KeyCode.P))
+        if (enterAllowed && Input.GetKeyDown(KeyCode.Return))
         {
             SceneManager.LoadScene(sceneToLoad);
         }
