@@ -12,6 +12,10 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] public int damage = 10;
     public int currentHealth;
     public Slider EnemyHealthSlider;
+    private static int EnemyDeath = 0;
+    private static int FPS1Count = 0;
+    private static int FPS2Count = 0;
+    private static int FPS3Count = 0;
     private MainCharacterHealth healthMC = new MainCharacterHealth();
     private MCAnimation mcAnimation;
     private EnemyAnimation enemyAnimation;
@@ -33,6 +37,31 @@ public class EnemyHealth : MonoBehaviour
     }
     void Start()
     {
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        string sceneName = currentScene.name;
+
+        if (sceneName == "FPS1")
+        {
+            if (FPS1Count < 1)
+            {
+                EnemyDeath++;
+            }
+        }
+        else if (sceneName == "FPS2")
+        {
+            if (FPS2Count < 1)
+            {
+                EnemyDeath++;
+            }
+        }
+        else if (sceneName == "FPS3")
+        {
+            if (FPS3Count < 1)
+            {
+                EnemyDeath++;
+            }
+        }
         currentHealth = maxHealth;
         EnemyHealthSlider = GetComponent<Slider>();
         EnemyHealthSlider.value = currentHealth;
@@ -66,7 +95,14 @@ public class EnemyHealth : MonoBehaviour
         // Optionally, trigger other game events here, like stopping the game or showing a victory screen.
         BubbleSpawner spawner = FindObjectOfType<BubbleSpawner>();
         spawner.StopSpawning();  // Stop spawning bubbles when the enemy is defeated
-        SceneManager.LoadScene("Platformer");
+        if (EnemyDeath == 3) 
+        {
+            SceneManager.LoadScene("Prolog");
+        }
+        else
+        {
+            SceneManager.LoadScene("Platformer");
+        }
     }
 
     void increaseMCHealthAndDamage()
