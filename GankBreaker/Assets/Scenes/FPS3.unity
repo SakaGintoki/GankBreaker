@@ -606,7 +606,7 @@ GameObject:
   - component: {fileID: 491172021}
   m_Layer: 0
   m_Name: GlobalAudioSource
-  m_TagString: Untagged
+  m_TagString: GlobalAudio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

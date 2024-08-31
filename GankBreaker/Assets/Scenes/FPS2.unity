@@ -542,7 +542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubblePrefab: {fileID: 89299886684992065, guid: 55a5f9c7eae38d2489ec58d7aa3277d9, type: 3}
   spawnArea: {fileID: 21198652}
-  spawnInterval: 2
+  spawnInterval: 1
 --- !u!4 &316239004
 Transform:
   m_ObjectHideFlags: 0
@@ -780,7 +780,7 @@ GameObject:
   - component: {fileID: 578657376}
   m_Layer: 0
   m_Name: GlobalAudioSource
-  m_TagString: Untagged
+  m_TagString: GlobalAudio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
