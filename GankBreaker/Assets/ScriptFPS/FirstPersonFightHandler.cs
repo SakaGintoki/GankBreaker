@@ -15,7 +15,7 @@ public class FirstPersonFightHandler : MonoBehaviour
     [SerializeField] GameObject HealthSlider;
     [SerializeField] TextMeshProUGUI HealthNote;
     [SerializeField] Image EscapeButtonImage;
-    [SerializeField] int PlatformerIndex = 2;
+    [SerializeField] int PlatformerIndex = 3;
     private int countClickRetreat = 0;
     private string sceneToLoad;
 

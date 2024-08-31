@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainCharacterHealth: MonoBehaviour
@@ -61,6 +63,8 @@ public class MainCharacterHealth: MonoBehaviour
         // Optionally, trigger other game events here, like stopping the game or showing a victory screen.
         BubbleSpawner spawner = FindObjectOfType<BubbleSpawner>();
         spawner.StopSpawning();  // Stop spawning bubbles when the enemy is defeated
+        SceneManager.LoadScene("Platformer");
+
     }
 
     void increaseMCHealthAndDamage()
