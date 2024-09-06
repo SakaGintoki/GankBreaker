@@ -542,7 +542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubblePrefab: {fileID: 89299886684992065, guid: 55a5f9c7eae38d2489ec58d7aa3277d9, type: 3}
   spawnArea: {fileID: 21198652}
-  spawnInterval: 2
+  spawnInterval: 0.5
 --- !u!4 &316239004
 Transform:
   m_ObjectHideFlags: 0
@@ -1471,7 +1471,7 @@ MonoBehaviour:
   HealthSlider: {fileID: 1246334727}
   HealthNote: {fileID: 791609211}
   EscapeButtonImage: {fileID: 0}
-  PlatformerIndex: 2
+  PlatformerIndex: 3
 --- !u!114 &914267582
 MonoBehaviour:
   m_ObjectHideFlags: 0

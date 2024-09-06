@@ -15,7 +15,7 @@ public class FirstPersonFightHandler : MonoBehaviour
     [SerializeField] GameObject HealthSlider;
     [SerializeField] TextMeshProUGUI HealthNote;
     [SerializeField] Image EscapeButtonImage;
-    [SerializeField] int PlatformerIndex = 3;
+    [SerializeField] int PlatformerIndex = 4;
     private int countClickRetreat = 0;
     private string sceneToLoad;
 
@@ -25,11 +25,7 @@ public class FirstPersonFightHandler : MonoBehaviour
         sceneToLoad = "Platformer";
         ChoicePanel.SetActive(true);
         FightButton.onClick.AddListener(Fight);
-        if (countClickRetreat < 1)
-        {
-            EscapeButton.onClick.AddListener(Escape);
-            countClickRetreat++;
-        }
+        EscapeButton.onClick.AddListener(Escape);
         BubbleSpawner.SetActive(false);
         EnemyHealthSlider.SetActive(false);
         HealthSlider.SetActive(false);
@@ -46,14 +42,22 @@ public class FirstPersonFightHandler : MonoBehaviour
 
     void Escape()
     {
-        float randomValue = UnityEngine.Random.value;
-        if (randomValue < 0.6f)
+        if (countClickRetreat == 0)
         {
-            SceneManager.LoadScene(PlatformerIndex);
+            float randomValue = UnityEngine.Random.value;
+            if (randomValue < 0.6f)
+            {
+                SceneManager.LoadScene(PlatformerIndex);
+            }
+            else
+            {
+                EscapeButtonImage.color = Color.red;
+            }
+            countClickRetreat++;
         }
         else
         {
-            EscapeButtonImage.color = Color.red;
+            
         }
     }
 }

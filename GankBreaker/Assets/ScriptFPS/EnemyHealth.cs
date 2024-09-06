@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using System;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -12,10 +13,9 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] public int damage = 10;
     public int currentHealth;
     public Slider EnemyHealthSlider;
-    private static int EnemyDeath = 0;
-    private static int FPS1Count = 0;
-    private static int FPS2Count = 0;
-    private static int FPS3Count = 0;
+    private static bool FPS1Beated = false;
+    private static bool FPS2Beated = false;
+    private static bool FPS3Beated = false;
     private MainCharacterHealth healthMC = new MainCharacterHealth();
     private MCAnimation mcAnimation;
     private EnemyAnimation enemyAnimation;
@@ -41,27 +41,6 @@ public class EnemyHealth : MonoBehaviour
 
         string sceneName = currentScene.name;
 
-        if (sceneName == "FPS1")
-        {
-            if (FPS1Count < 1)
-            {
-                EnemyDeath++;
-            }
-        }
-        else if (sceneName == "FPS2")
-        {
-            if (FPS2Count < 1)
-            {
-                EnemyDeath++;
-            }
-        }
-        else if (sceneName == "FPS3")
-        {
-            if (FPS3Count < 1)
-            {
-                EnemyDeath++;
-            }
-        }
         currentHealth = maxHealth;
         EnemyHealthSlider = GetComponent<Slider>();
         EnemyHealthSlider.value = currentHealth;
@@ -95,9 +74,30 @@ public class EnemyHealth : MonoBehaviour
         // Optionally, trigger other game events here, like stopping the game or showing a victory screen.
         BubbleSpawner spawner = FindObjectOfType<BubbleSpawner>();
         spawner.StopSpawning();  // Stop spawning bubbles when the enemy is defeated
-        if (EnemyDeath == 3) 
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        string sceneName = currentScene.name;
+
+        if (sceneName == "FPS1")
         {
-            SceneManager.LoadScene("Prolog");
+            FPS1Beated = true;
+        }
+        else if (sceneName == "FPS2")
+        {
+            FPS2Beated = true;
+        }
+        else if (sceneName == "FPS3")
+        {
+            FPS3Beated = true;
+        }
+
+        if (FPS3Beated && FPS1Beated && FPS2Beated) 
+        {
+            SceneManager.LoadScene("Epilog");
+        }
+        else if(FPS3Beated) 
+        {
+            SceneManager.LoadScene("Epilog");
         }
         else
         {

@@ -62,15 +62,15 @@ public class Bubble : MonoBehaviour
         }
 
         float randomValue = UnityEngine.Random.value; 
-        if (randomValue < 0.7f) 
+        if (randomValue < 0.4f) 
         {
-            bubbleKey = (char)('A');
+            bubbleKey = (char)('A' + UnityEngine.Random.Range(0, 26));
             bubbleText.text = bubbleKey.ToString();
             animationType = AnimationType.BlockAnimation;
         }
         else 
         {
-            bubbleKey = (char)('D');
+            bubbleKey = (char)('A' + UnityEngine.Random.Range(0, 26));
             bubbleText.text = bubbleKey.ToString();
             animationType = AnimationType.PunchAnimation;
         }
